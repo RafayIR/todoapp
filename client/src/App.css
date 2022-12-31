@@ -1,0 +1,119 @@
+.main-app {
+  /* display: flex; */
+  height: 100vh;
+  align-items: center;
+  background: #18262f;
+}
+
+.signup {
+  text-align: center;
+  padding: 30px 0;
+}
+
+h1 {
+  text-align: center;
+  font-size: 50px !important;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500 !important;
+  padding: 10px 0 !important;
+  color: #fff
+}
+
+.signup form {
+  /* border: 2px solid #b51a20; */
+  padding: 10px 0;
+  border-radius: 11px;
+  width: 30%;
+  margin: 10px auto ;
+  background: #fff;
+  box-shadow: 01px 1px 4px 2px #41464b;
+}
+
+.signup form .col-md-6 {
+  padding: 10px 0;
+}
+img.userIcon {
+  max-width: 30%;
+}
+.signup form input,
+.signup form button {
+  border: 2px solid #ccc;
+  color: #000;
+  padding: 7px;
+  margin: 10px 0;
+  width: 80%;
+  border-radius: 5px;
+  transition: 0.5s all;
+}
+
+.signup form button {
+  font-size: 18px;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 20px;
+}
+
+.signup form button:hover {
+  transform: scale(0.95);
+  background: #ccc;
+}
+
+.signup form input::placeholder {
+  color: gray;
+}
+
+.signup form input:focus-visible {
+  box-shadow: 0 0 5px rgb(0 123 255 / 25%);
+  outline: none;
+  border-color: rgb(0 123 255 / 25%);
+}
+
+.required {
+  border: 1.5px solid red !important;
+}
+p {
+  font-size: 14px;
+  font-weight: 400;
+  font-family: 'Poppins', sans-serif;
+  margin: 0 !important;
+}
+
+p.alredyReg a {
+  color: #18262f;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.5s all;
+}
+
+p.alredyReg a:hover {
+  color: #b51a20;
+}
+.welcome .userData h1 {
+  color: #ffff;
+}
+/* Nav */
+
+/* Nav */
+
+
+
+.signupData li {
+  list-style: none;
+  padding: 10px 0;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: space-around;
+}
+
+.signupData {
+  padding-top: 70px;
+}
+
+.signupData li:nth-child(odd) {
+  background: #f3f3f3;
+  border-radius: 5px;
+  border: 2px solid #ccc;
+}
+
