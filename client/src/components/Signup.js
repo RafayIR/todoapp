@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import userIcon from '../images/User_icon_white.jpg'
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
 const Signup = ({addUser, data}) => {
@@ -34,25 +35,43 @@ const Signup = ({addUser, data}) => {
         return true;
     }
 
-    let dataSubmit = (e) => {
+    let dataSubmit = async (e) => {
         e.preventDefault();
 
+    //    backend code
         if (user.fullname && user.uname && user.email && user.pswd) {
-            if (!validEmail(user.email)) {
-                setError(['Someone is already taken this email']);
-                return null;
+            try {
+                const response = await axios.post(
+                    "http://localhost:8080/users/register",
+                    {
+                        email: user.email,
+                        password: user.pswd,
+                        username:  user.uname,
+                        name: user.fullname
+                    }
+                );
+    
+                navigate("/")
+    
+            } catch (err) {
+                console.error(err)
+                alert("Someone has already taken this email");
             }
+            // if (!validEmail(user.email)) {
+            //     setError(['Someone is already taken this email']);
+            //     return null;
+            // }
 
-            // setUserData([...userData, user])
-            addUser(user);
+            // // setUserData([...userData, user])
+            // addUser(user);
 
-            setUser({
-                fullname:'',
-                uname: '',
-                email: '',
-                pswd: ''
-            });
-            navigate("/");
+            // setUser({
+            //     fullname:'',
+            //     uname: '',
+            //     email: '',
+            //     pswd: ''
+            // });
+            // navigate("/");
         }
     }
 

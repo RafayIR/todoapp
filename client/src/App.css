@@ -116,4 +116,16 @@ p.alredyReg a:hover {
   border-radius: 5px;
   border: 2px solid #ccc;
 }
+.todoData li {
+  color: #fff;
+  list-style: none;
+  font-size: 21px;
+  font-weight: 500;
+  font-family: 'Poppins';
+  border-bottom: 1px solid #fff;
+  width: 40%;
+  margin: auto;
+  padding: 10px 0;
+  text-align: left;
+}
 

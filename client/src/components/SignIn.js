@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import userIcon from '../images/User_icon_white.jpg'
 import { Link, useNavigate } from 'react-router-dom';
-
+import axios from 'axios';
 
 
 const SignIn = ({ data }) => {
@@ -18,19 +18,38 @@ const SignIn = ({ data }) => {
         setLoginUser({ ...loginUser, [name]: value });
     }
 
-    let loginCredentials = (event) => {
+    let loginCredentials = async (event) => {
         event.preventDefault();
 
+        try {
+            const response = await axios.post(
+                "http://localhost:8080/users/login",
+                {
+                    email: loginUser.email,
+                    password: loginUser.pswd
+                }
+            );
+
+            const token = response.data;
+            localStorage.setItem('token', token);
+            localStorage.setItem('email', loginUser.email);
+
+            navigate("/todo")
+
+        } catch (err) {
+            console.error(err)
+            alert("Please Enter Valid Credentials");
+        }
         // console.log(data)
-        let isValid = false;
-        data.map((item) => {
-            if ((item.email === loginUser.email) && (item.pswd === loginUser.pswd)) {
-                isValid = true;
-                navigate("/Welcome")
-            }
-        })
-        if (!isValid) alert("Please Enter Valid Credentials");
+        // let isValid = false;
+        // data.map((item) => {
+        //     if ((item.email === loginUser.email) && (item.pswd === loginUser.pswd)) {
+        //         isValid = true;
+        //         navigate("/Welcome")
+        //     }
+        // })
     }
+
 
     return (
         <div>

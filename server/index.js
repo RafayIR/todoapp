@@ -6,12 +6,19 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 
+const jwt = require('jsonwebtoken');
+
 app.use(cors());
 
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/',routes);
+app.use('/', routes);
+
+
+// Redis
+
+
 
 
 

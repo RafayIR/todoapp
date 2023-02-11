@@ -4,24 +4,40 @@ import axios from 'axios';
 export const addTodoApi = createAsyncThunk('user/Add', async (data) => {
     try {
         console.log("Api hitted")
-        const response = await axios.post("http://localhost:8080/todo/", {item:data});
-        // If you want to get something back
+        const response = await axios.post(
+            "http://localhost:8080/todo/add",
+            { item: data },
+            {
+                headers: {
+                    'Authorization': `Basic ${localStorage.getItem('token')}`
+                }
+            }
+        );
+        // If you want to get something back 
         return response.data;
     } catch (err) {
         console.error(err)
     }
 })
 
-
-export const readTodoApi = createAsyncThunk( 'user/read', async (data) => {
-    try{
-        console.log('read Api hitted')
-        const todoUser = await axios.get('http://localhost:8080/todo/', { item : data})
-        return todoUser.data;
-    }catch (err) {
-        console.error(err);
+export const readTodoApi = createAsyncThunk('user/read', async () => {
+    try {
+        const userTodo = await axios.get(
+            "http://localhost:8080/todo/",
+            {
+                headers: {
+                    'Authorization': `Basic ${localStorage.getItem('token')}`
+                }
+            });
+        // If you want to get something back
+        console.log("User Todo", userTodo);
+        return userTodo.data;
+    } catch (err) {
+        console.error(err)
     }
 })
+
+
 
 const initialState = {
     list: [],
@@ -33,23 +49,23 @@ const todoSlice = createSlice({
     name: "todoList",
     initialState,
     reducers: {},
-    extraReducers: (builder) => {
-        builder.addCase(addTodoApi.fulfilled, (state, action) => {
+    extraReducers: (muneed) => {
+        muneed.addCase(addTodoApi.fulfilled, (state, action) => {
             state.list = action.payload
             state.status = "succeeded"
             console.log("succeeded")
         });
-        builder.addCase(addTodoApi.pending, (state, action) => {
+        muneed.addCase(addTodoApi.pending, (state, action) => {
             state.status = "loading"
             console.log("pending...")
         });
-        builder.addCase(addTodoApi.rejected, (state, action) => {
+        muneed.addCase(addTodoApi.rejected, (state, action) => {
             state.status = "failed"
             // state.error = "error"
         });
-        builder.addCase(readTodoApi.fulfilled, (state, action) => {
+        muneed.addCase(readTodoApi.fulfilled, (state, action) => {
             state.list = action.payload;
-            state.status = "succeeded";
+            console.log("todoList==>", state.list)
         })
     }
 })
