@@ -23,7 +23,7 @@ const SignIn = ({ data }) => {
 
         try {
             const response = await axios.post(
-                "http://localhost:8080/users/login",
+                process.env.REACT_APP_SERVER_URL + "users/login",
                 {
                     email: loginUser.email,
                     password: loginUser.pswd

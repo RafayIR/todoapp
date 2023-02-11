@@ -1,10 +1,10 @@
 const Redis = require('ioredis');
 
 const redis = new Redis({
-    host: 'redis-15557.c212.ap-south-1-1.ec2.cloud.redislabs.com',
-    port: 15557,
+    host: 'redis-17503.c92.us-east-1-3.ec2.cloud.redislabs.com',
+    port: 17503,
     username: "default", // needs Redis >= 6
-    password: 'IyPdAIufyRAKuZCerBQP6BRdIl9iWl0J'
+    password: 'ARX4bFNEhX1CkhbICMox3exmfqk45rRm'
 });
 
 module.exports=redis;

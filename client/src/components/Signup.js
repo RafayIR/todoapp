@@ -42,7 +42,7 @@ const Signup = ({addUser, data}) => {
         if (user.fullname && user.uname && user.email && user.pswd) {
             try {
                 const response = await axios.post(
-                    "http://localhost:8080/users/register",
+                    process.env.REACT_APP_SERVER_URL + "users/register",
                     {
                         email: user.email,
                         password: user.pswd,
